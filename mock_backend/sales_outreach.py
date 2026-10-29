@@ -55,3 +55,4 @@ def trigger_nudge(merchant_id: str, campaign_type: str, discount_offer_code: Opt
     
     db.nudges.append(nudge)
     return nudge
+

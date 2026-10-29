@@ -199,3 +199,4 @@ class MockDatabase:
 
 # Global database instance
 db = MockDatabase()
+

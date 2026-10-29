@@ -67,3 +67,4 @@ def escalate_ticket_to_human(
 def get_ticket_status(ticket_id: str) -> Optional[Dict[str, Any]]:
     """Get status of CRM ticket."""
     return db.tickets.get(ticket_id)
+

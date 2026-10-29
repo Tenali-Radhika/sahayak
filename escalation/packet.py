@@ -45,3 +45,4 @@ def build_escalation_packet(
         "assigned_desk": "PRIORITY_RISK_SETTLEMENT_DESK" if "SETTLEMENT" in trigger_reason or "CAP" in trigger_reason else "PRIORITY_ESCALATION_QUEUE",
         "sla_minutes": 15
     }
+

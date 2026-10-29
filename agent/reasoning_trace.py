@@ -39,3 +39,4 @@ class ReasoningTrace:
 
     def get_trace_summary(self) -> List[Dict[str, Any]]:
         return list(self.steps)
+

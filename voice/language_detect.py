@@ -32,3 +32,4 @@ def detect_language(text: str) -> Tuple[str, str]:
 
     # Default to Indian English
     return "en-IN", "Indian English"
+

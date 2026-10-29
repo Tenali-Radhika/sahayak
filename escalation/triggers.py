@@ -42,3 +42,4 @@ def evaluate_escalation_triggers(
         return True, "CONFIDENCE_BELOW_THRESHOLD", f"Diagnosis confidence {confidence_score:.1f}% below 80% safety gate."
         
     return False, None, None
+

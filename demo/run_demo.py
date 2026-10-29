@@ -154,3 +154,4 @@ if __name__ == "__main__":
         run_benchmark_suite()
     else:
         main_menu()
+

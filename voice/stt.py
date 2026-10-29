@@ -71,3 +71,4 @@ class SarvamSTTClient:
             "latency_ms": elapsed_ms,
             "source": "DIRECT_INFERENCE"
         }
+

@@ -42,3 +42,4 @@ def get_live_audit_feed(limit: int = 20) -> List[dict]:
     """Return JSON serializable audit entries for web UI streaming."""
     entries = audit_writer.get_entries()
     return [e.model_dump() for e in entries[-limit:]]
+

@@ -16,3 +16,4 @@ def check_confidence_threshold(confidence_score: float, threshold: float = DEFAU
         return False, f"CONFIDENCE_BELOW_THRESHOLD: Confidence {confidence_score:.1f}% is below required {threshold:.1f}% safety barrier."
         
     return True, f"Confidence {confidence_score:.1f}% meets safety threshold ({threshold:.1f}%)."
+

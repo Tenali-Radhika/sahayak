@@ -29,3 +29,4 @@ class ConversationSession:
 
     def get_full_transcript(self) -> List[Dict[str, str]]:
         return list(self.transcript)
+

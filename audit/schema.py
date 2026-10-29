@@ -30,3 +30,4 @@ class AuditEntry(BaseModel):
     state: str
     details: Dict[str, Any]
     hash: str
+

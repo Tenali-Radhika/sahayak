@@ -26,3 +26,4 @@ def trigger_loan_followup(merchant_id: str = "M_1092") -> Dict[str, Any]:
         "preapproved_amount_inr": 100000.0,
         "offer_text": nudge["offer_text"]
     }
+

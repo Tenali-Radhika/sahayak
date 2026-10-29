@@ -75,3 +75,4 @@ class BenchmarkScorecard:
             "handoff_target_met": handoff_completeness == 100.0,
             "overall_pitch_targets_passed": all_passed
         }
+

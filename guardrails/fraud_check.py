@@ -25,3 +25,4 @@ def check_fraud_and_risk(merchant_id: str) -> Tuple[bool, str]:
         return False, "HARDSHIP_HOLD: Merchant is marked for priority empathetic human counseling."
         
     return True, "No fraud, dispute, or hardship flags detected."
+

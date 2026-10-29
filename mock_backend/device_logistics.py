@@ -70,3 +70,4 @@ def get_device_logistics(merchant_id: str, order_id: Optional[str] = None) -> Di
         "delivery_agent_phone": "+919845012345",
         "eta_human": "Tomorrow before 2:00 PM"
     }
+

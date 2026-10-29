@@ -17,3 +17,4 @@ def check_amount_cap(amount_inr: float, hard_cap: float = HARD_CAP_INR) -> Tuple
         return False, f"AMOUNT_EXCEEDS_50K_CAP: Requested amount ₹{amount_inr:,.2f} exceeds ₹{hard_cap:,.2f} hard limit."
         
     return True, f"Amount ₹{amount_inr:,.2f} is within safe autonomous cap of ₹{hard_cap:,.2f}."
+

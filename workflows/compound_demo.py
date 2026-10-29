@@ -34,3 +34,4 @@ def run_compound_call(
         "within_2s_budget": result["within_2s_budget"],
         "reasoning_trace": result["reasoning_trace"]
     }
+

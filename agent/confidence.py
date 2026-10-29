@@ -41,3 +41,4 @@ class ConfidenceScorer:
         
         final_score = min(99.0, max(20.0, base_score + keyword_bonus + entity_bonus))
         return round(final_score, 1)
+

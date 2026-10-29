@@ -49,3 +49,4 @@ def update_kyc_status(merchant_id: str, new_status: str) -> Dict[str, Any]:
         raise ValueError(f"Merchant {merchant_id} not found")
     merchant["kyc_status"] = new_status
     return {"merchant_id": merchant_id, "updated_status": new_status, "success": True}
+

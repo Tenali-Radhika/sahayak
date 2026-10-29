@@ -46,3 +46,4 @@ def send_emi_payment_link(merchant_id: str, amount_inr: Optional[float] = None) 
     
     db.payment_links[link_id] = record
     return record
+

@@ -282,3 +282,4 @@ class AgentStateMachine:
             "within_2s_budget": True,
             "reasoning_trace": self.trace.get_trace_summary()
         }
+

@@ -24,3 +24,4 @@ def verify_caller_identity(caller_phone: str, claimed_merchant_id: str) -> Tuple
         return False, f"Caller phone '{caller_phone}' does not match registered phone for {claimed_merchant_id}."
         
     return True, "Caller ID verified successfully against merchant record."
+
