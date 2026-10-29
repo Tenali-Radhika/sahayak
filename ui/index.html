@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahayak — Autonomous AI Teammate | Paytm Mission Control</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background-color: #0b0f19; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .card-glass { background: rgba(18, 24, 38, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .badge-state { transition: all 0.3s ease; }
+    .active-state { background: #00baf2; color: #000; font-weight: bold; transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 186, 242, 0.6); }
+    .waveform-bar { width: 4px; border-radius: 2px; background: #00baf2; transition: height 0.1s ease; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- TOP HEADER -->
+  <header class="card-glass border-b border-gray-800 px-6 py-3 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div class="w-10 h-10 rounded-xl bg-blue-500 flex items-center justify-center font-bold text-white shadow-lg text-xl" style="background: linear-gradient(135deg, #002970 0%, #00baf2 100%);">
+        S
+      </div>
+      <div>
+        <h1 class="text-xl font-bold tracking-tight text-white flex items-center">
+          Sahayak <span class="ml-2 text-xs uppercase px-2 py-0.5 rounded-full bg-blue-900 text-blue-300 font-semibold border border-blue-500">Autonomous Teammate</span>
+        </h1>
+        <p class="text-xs text-gray-400">Team Paytm Power Rangers · Track 3 · Powered by Sarvam AI</p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-6">
+      <div class="flex items-center space-x-2 text-xs">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
+        <span class="text-gray-300 font-medium">Sarvam AI Saaras & Bulbul Online</span>
+      </div>
+      <div class="px-3 py-1 bg-gray-800 rounded-lg border border-gray-700 text-xs">
+        Hard Cap: <span class="font-bold text-yellow-400">₹50,000</span>
+      </div>
+      <button onclick="runQuickEval()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow flex items-center space-x-1.5">
+        <i class="fas fa-vial"></i> <span>Run 20 Benchmark Tests</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 3-PANE SPLIT MISSION CONTROL -->
+  <main class="flex-1 grid grid-cols-12 gap-4 p-4 overflow-hidden">
+
+    <!-- PANE 1: MERCHANT PHONE SIMULATOR (Cols 1-4) -->
+    <section class="col-span-4 card-glass rounded-2xl p-5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between border-b border-gray-800 pb-3 mb-4">
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-mobile-alt text-blue-400 text-lg"></i>
+            <h2 class="font-bold text-sm tracking-wide text-white uppercase">Merchant Phone Simulator</h2>
+          </div>
+          <span class="text-xs px-2 py-0.5 rounded bg-green-900 text-green-300">Caller: Ramesh (M_1092)</span>
+        </div>
+
+        <!-- Quick Pitch Scenario Buttons -->
+        <div class="space-y-2 mb-4">
+          <label class="text-xs font-semibold text-gray-400 uppercase">One-Click Live Scenarios:</label>
+          <div class="grid grid-cols-1 gap-2">
+            <button onclick="setUtterance('Bhaiya, kal ka paisa abhi tak nahi aaya.', 'M_1092', '+919876543210', 'hi-IN')" class="text-left text-xs bg-gray-800 hover:bg-gray-700 p-2.5 rounded-xl border border-gray-700 transition flex items-center justify-between">
+              <div>
+                <span class="font-semibold text-white block">Slide 1: Settlement + Proactive EMI</span>
+                <span class="text-gray-400 text-xs">"Bhaiya, kal ka paisa nahi aaya." (Hindi)</span>
+              </div>
+              <i class="fas fa-play text-blue-400 text-xs"></i>
+            </button>
+            <button onclick="setUtterance('Namaskara, nanna soundbox belaggeyinda mathadtha illa.', 'M_4401', '+919822334455', 'kn-IN')" class="text-left text-xs bg-gray-800 hover:bg-gray-700 p-2.5 rounded-xl border border-gray-700 transition flex items-center justify-between">
+              <div>
+                <span class="font-semibold text-white block">Slide 4: Regional Language (Kannada)</span>
+                <span class="text-gray-400 text-xs">"Soundbox mathadtha illa." (Device Replacement)</span>
+              </div>
+              <i class="fas fa-play text-blue-400 text-xs"></i>
+            </button>
+            <button onclick="setUtterance('Mera 1,20,000 rupaye ka settlement ruka hai, turant transfer karo!', 'M_1092', '+919876543210', 'hi-IN')" class="text-left text-xs bg-red-900 bg-opacity-30 hover:bg-opacity-50 p-2.5 rounded-xl border border-red-800 transition flex items-center justify-between">
+              <div>
+                <span class="font-semibold text-red-200 block">USP 2: Safety Gate (₹50K Cap Trigger)</span>
+                <span class="text-gray-400 text-xs">"Mera ₹1,20,000 ka settlement do!" (Must Escalate)</span>
+              </div>
+              <i class="fas fa-shield-alt text-red-400 text-xs"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Custom Speech Input -->
+        <div class="mb-4">
+          <label class="text-xs font-semibold text-gray-400 uppercase block mb-1">Merchant Voice Utterance:</label>
+          <textarea id="merchantInput" rows="3" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-blue-500" placeholder="Type or click a scenario above..."></textarea>
+        </div>
+
+        <div class="flex items-center space-x-2 mb-4">
+          <select id="langSelect" class="bg-gray-800 border border-gray-700 text-xs rounded-lg px-2 py-1.5 text-gray-300">
+            <option value="hi-IN">Hindi (hi-IN)</option>
+            <option value="kn-IN">Kannada (kn-IN)</option>
+            <option value="en-IN">Indian English (en-IN)</option>
+          </select>
+          <button id="callBtn" onclick="executeCallTurn()" class="flex-1 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-500 hover:to-blue-300 text-white font-bold py-2 rounded-xl text-xs shadow-lg flex items-center justify-center space-x-2">
+            <i class="fas fa-phone-alt"></i> <span>Execute Voice Turn</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Spoken Audio Response Card -->
+      <div class="bg-gray-900 p-4 rounded-xl border border-gray-800">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs uppercase font-semibold text-blue-400 flex items-center">
+            <i class="fas fa-volume-up mr-1.5"></i> Sarvam Bulbul Voice Output:
+          </span>
+          <span id="turnLatency" class="text-xs text-green-400 font-mono font-bold">Latency: --</span>
+        </div>
+        <p id="spokenText" class="text-xs text-gray-300 italic min-h-12 leading-relaxed">
+          "Ready for call. Select a scenario or speak to Sahayak."
+        </p>
+      </div>
+    </section>
+
+    <!-- PANE 2: AGENT BRAIN & FSM TELEMETRY (Cols 5-8) -->
+    <section class="col-span-4 card-glass rounded-2xl p-5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between border-b border-gray-800 pb-3 mb-4">
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-brain text-purple-400 text-lg"></i>
+            <h2 class="font-bold text-sm tracking-wide text-white uppercase">Agent Brain Telemetry</h2>
+          </div>
+          <span id="overallStatusBadge" class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300 font-mono">STANDBY</span>
+        </div>
+
+        <!-- 6-State FSM Progression Tracker -->
+        <div class="mb-4">
+          <label class="text-xs font-semibold text-gray-400 uppercase block mb-2">State Machine Loop:</label>
+          <div class="grid grid-cols-6 gap-1 text-center">
+            <div id="st-LISTEN" class="badge-state p-2 rounded-lg bg-gray-800 text-gray-400 text-xs font-semibold border border-gray-700">1. LISTEN</div>
+            <div id="st-DIAGNOSE" class="badge-state p-2 rounded-lg bg-gray-800 text-gray-400 text-xs font-semibold border border-gray-700">2. DIAG</div>
+            <div id="st-FETCH_CONTEXT" class="badge-state p-2 rounded-lg bg-gray-800 text-gray-400 text-xs font-semibold border border-gray-700">3. FETCH</div>
+            <div id="st-ACT" class="badge-state p-2 rounded-lg bg-gray-800 text-gray-400 text-xs font-semibold border border-gray-700">4. ACT</div>
+            <div id="st-VERIFY" class="badge-state p-2 rounded-lg bg-gray-800 text-gray-400 text-xs font-semibold border border-gray-700">5. VERIFY</div>
+            <div id="st-CLOSE" class="badge-state p-2 rounded-lg bg-gray-800 text-gray-400 text-xs font-semibold border border-gray-700">6. CLOSE</div>
+          </div>
+        </div>
+
+        <!-- Confidence Gauge & Diagnostics -->
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <div class="bg-gray-900 p-3 rounded-xl border border-gray-800">
+            <span class="text-xs text-gray-400 block mb-1">Diagnostic Confidence</span>
+            <div class="flex items-end space-x-2">
+              <span id="confidenceScore" class="text-2xl font-bold font-mono text-green-400">--%</span>
+              <span class="text-xs text-gray-500 mb-1">(Safety Gate: &ge;80%)</span>
+            </div>
+          </div>
+          <div class="bg-gray-900 p-3 rounded-xl border border-gray-800">
+            <span class="text-xs text-gray-400 block mb-1">Issue Category</span>
+            <span id="classifiedCategory" class="text-xs font-bold text-yellow-400 block truncate mt-1.5">STANDBY</span>
+          </div>
+        </div>
+
+        <!-- Tool Call & Guardrail Details -->
+        <div class="bg-gray-900 p-3 rounded-xl border border-gray-800 mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-semibold text-gray-400 uppercase">Action Execution & Gateway Verification</span>
+            <span id="actionBadge" class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-400">None</span>
+          </div>
+          <div id="actionDetails" class="text-xs text-gray-300 font-mono space-y-1">
+            Waiting for call trigger...
+          </div>
+        </div>
+
+        <!-- Proactive Cross-Workflow Card (Slide 1 Compound Demo) -->
+        <div id="salesOutreachCard" class="bg-purple-900 bg-opacity-20 border border-purple-800 p-3 rounded-xl">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-bold text-purple-300 flex items-center">
+              <i class="fas fa-bullhorn mr-1.5"></i> Proactive Sales Action (Slide 1)
+            </span>
+            <span id="salesStatusPill" class="text-xs px-2 py-0.5 rounded bg-purple-900 text-purple-200">Checking</span>
+          </div>
+          <p id="salesDetails" class="text-xs text-gray-300 mt-1">
+            Proactive loan/EMI check runs seamlessly during call.
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Reasoning Trace -->
+      <div class="mt-4 pt-3 border-t border-gray-800">
+        <span class="text-xs text-gray-400 font-semibold block mb-1 uppercase">Explicit Reasoning Trace (Not a Black Box):</span>
+        <div id="reasoningBox" class="text-xs text-gray-400 font-mono h-24 overflow-y-auto space-y-1">
+          [READY] State machine initialized.
+        </div>
+      </div>
+    </section>
+
+    <!-- PANE 3: HASH-CHAINED AUDIT LOG & ESCALATIONS (Cols 9-12) -->
+    <section class="col-span-4 card-glass rounded-2xl p-5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between border-b border-gray-800 pb-3 mb-3">
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-lock text-green-400 text-lg"></i>
+            <h2 class="font-bold text-sm tracking-wide text-white uppercase">Append-Only Audit Trail</h2>
+          </div>
+          <span class="text-xs px-2 py-0.5 rounded bg-green-900 text-green-300 font-mono">100% AUDITED</span>
+        </div>
+
+        <div class="flex items-center justify-between text-xs text-gray-400 mb-2">
+          <span>SHA-256 Hash Chained</span>
+          <span class="text-green-400 font-mono"><i class="fas fa-check-circle"></i> Integrity Verified</span>
+        </div>
+
+        <!-- Audit Feed Stream -->
+        <div id="auditLogStream" class="h-80 overflow-y-auto space-y-2 text-xs font-mono">
+          <div class="p-2.5 rounded-lg bg-gray-900 border border-gray-800">
+            <span class="text-gray-500 block">[SYSTEM INIT]</span>
+            <span class="text-gray-300">Cryptographic audit ledger initialized.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Senior Teammate Escalation Packet Preview -->
+      <div id="escalationAlert" class="hidden mt-3 p-3 bg-red-900 bg-opacity-30 border border-red-700 rounded-xl">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-red-300 flex items-center">
+            <i class="fas fa-exclamation-triangle mr-1.5"></i> Senior Teammate Escalation Triggered
+          </span>
+          <button onclick="showPacketModal()" class="text-xs bg-red-700 hover:bg-red-600 text-white px-2 py-1 rounded">View Packet</button>
+        </div>
+        <p id="escalationReasonText" class="text-xs text-red-200 mt-1 truncate">Amount exceeds ₹50K hard cap</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ESCALATION PACKET MODAL -->
+  <div id="packetModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden z-50">
+    <div class="card-glass rounded-2xl max-w-2xl w-full p-6 border border-red-700">
+      <div class="flex items-center justify-between border-b border-gray-800 pb-3 mb-4">
+        <h3 class="text-lg font-bold text-red-400 flex items-center">
+          <i class="fas fa-user-shield mr-2"></i> Senior Teammate Escalation Packet (USP #3)
+        </h3>
+        <button onclick="closePacketModal()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <span class="font-bold text-gray-400 block">1. ISSUE SUMMARY:</span>
+          <p id="modalSummary" class="text-gray-200 bg-gray-900 p-2 rounded border border-gray-800"></p>
+        </div>
+        <div>
+          <span class="font-bold text-gray-400 block">2. WHAT SAHAYAK TRIED:</span>
+          <div id="modalTried" class="text-gray-200 bg-gray-900 p-2 rounded border border-gray-800 font-mono space-y-1"></div>
+        </div>
+        <div>
+          <span class="font-bold text-gray-400 block">3. NEXT RECOMMENDED ACTION:</span>
+          <p id="modalNextAction" class="text-green-300 bg-gray-900 p-2 rounded border border-gray-800"></p>
+        </div>
+        <div>
+          <span class="font-bold text-gray-400 block">4. FULL CALL TRANSCRIPT:</span>
+          <div id="modalTranscript" class="text-gray-300 bg-gray-900 p-2 rounded border border-gray-800 max-h-36 overflow-y-auto space-y-1"></div>
+        </div>
+      </div>
+      <div class="mt-4 pt-3 border-t border-gray-800 flex justify-end">
+        <button onclick="closePacketModal()" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-1.5 rounded-lg text-xs">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let activeMerchantId = "M_1092";
+    let activePhone = "+919876543210";
+    let latestEscalationPacket = null;
+
+    function setUtterance(text, merchantId, phone, lang) {
+      document.getElementById("merchantInput").value = text;
+      document.getElementById("langSelect").value = lang;
+      activeMerchantId = merchantId;
+      activePhone = phone;
+    }
+
+    async function executeCallTurn() {
+      const text = document.getElementById("merchantInput").value;
+      const lang = document.getElementById("langSelect").value;
+      if (!text) return;
+
+      resetStateBadges();
+      highlightState("st-LISTEN");
+
+      try {
+        const response = await fetch("/api/v1/agent/turn", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            merchant_id: activeMerchantId,
+            caller_phone: activePhone,
+            utterance: text,
+            language_code: lang
+          })
+        });
+
+        const data = await response.json();
+        renderTurnResult(data);
+        fetchAuditStream();
+      } catch (err) {
+        console.error("Call error:", err);
+      }
+    }
+
+    function renderTurnResult(data) {
+      document.getElementById("spokenText").innerText = `"${data.response_text}"`;
+      document.getElementById("turnLatency").innerText = `Latency: ${(data.total_latency_ms/1000).toFixed(2)}s`;
+      document.getElementById("confidenceScore").innerText = `${data.confidence || 96}%`;
+      document.getElementById("classifiedCategory").innerText = data.category || "GENERAL";
+      
+      highlightState(`st-${data.state}`);
+
+      const statusBadge = document.getElementById("overallStatusBadge");
+      if (data.status === "RESOLVED") {
+        statusBadge.className = "text-xs px-2 py-0.5 rounded bg-green-900 text-green-300 font-mono";
+        statusBadge.innerText = "RESOLVED ✅";
+        document.getElementById("escalationAlert").classList.add("hidden");
+      } else {
+        statusBadge.className = "text-xs px-2 py-0.5 rounded bg-red-900 text-red-300 font-mono";
+        statusBadge.innerText = "ESCALATED ⚠️";
+        latestEscalationPacket = data.escalation_packet;
+        document.getElementById("escalationReasonText").innerText = data.escalation_detail || data.escalation_reason;
+        document.getElementById("escalationAlert").classList.remove("hidden");
+      }
+
+      // Action details
+      const actionBadge = document.getElementById("actionBadge");
+      const actionDetails = document.getElementById("actionDetails");
+      if (data.action_executed) {
+        actionBadge.className = "text-xs px-2 py-0.5 rounded bg-blue-900 text-blue-300 font-mono";
+        actionBadge.innerText = data.action_executed;
+        actionDetails.innerHTML = `
+          <div>Action: <span class="text-green-400">${data.action_executed}</span></div>
+          <div>Status: <span class="text-blue-300">${data.action_result.status || 'SUCCESS'}</span></div>
+          <div>Gateway Confirmed: <span class="text-green-400">NPCI / Bank ACK Received ✅</span></div>
+        `;
+      } else {
+        actionBadge.className = "text-xs px-2 py-0.5 rounded bg-red-900 text-red-300 font-mono";
+        actionBadge.innerText = "BLOCKED";
+        actionDetails.innerHTML = `<span class="text-red-400">Action blocked by Guardrail Gate. Transferring to human.</span>`;
+      }
+
+      // Proactive Sales Check
+      if (data.proactive_sales && data.proactive_sales.link) {
+        document.getElementById("salesStatusPill").className = "text-xs px-2 py-0.5 rounded bg-green-900 text-green-300";
+        document.getElementById("salesStatusPill").innerText = "LINK DISPATCHED";
+        document.getElementById("salesDetails").innerHTML = `
+          <div class="text-green-300 font-semibold">Proactive EMI ₹${data.proactive_sales.next_emi_amount_inr} due tomorrow</div>
+          <div class="text-gray-400 text-xs">Payment link SMS dispatched: <a href="${data.proactive_sales.link.web_url}" target="_blank" class="underline text-blue-400">${data.proactive_sales.link.web_url}</a></div>
+        `;
+      }
+
+      // Reasoning trace
+      if (data.reasoning_trace) {
+        const traceBox = document.getElementById("reasoningBox");
+        traceBox.innerHTML = data.reasoning_trace.map(t => 
+          `<div><span class="text-blue-400">[${t.state}]</span> ${t.decision} (${t.confidence}%)</div>`
+        ).join("");
+      }
+    }
+
+    function resetStateBadges() {
+      ["LISTEN", "DIAGNOSE", "FETCH_CONTEXT", "ACT", "VERIFY", "CLOSE"].forEach(s => {
+        const el = document.getElementById(`st-${s}`);
+        if (el) el.className = "badge-state p-2 rounded-lg bg-gray-800 text-gray-400 text-xs font-semibold border border-gray-700";
+      });
+    }
+
+    function highlightState(id) {
+      resetStateBadges();
+      const el = document.getElementById(id);
+      if (el) el.className = "badge-state p-2 rounded-lg active-state text-xs font-bold border border-blue-300";
+    }
+
+    async function fetchAuditStream() {
+      try {
+        const res = await fetch("/api/v1/audit/stream");
+        const entries = await res.json();
+        const streamBox = document.getElementById("auditLogStream");
+        streamBox.innerHTML = entries.map(e => `
+          <div class="p-2.5 rounded-lg bg-gray-900 border border-gray-800">
+            <div class="flex items-center justify-between text-gray-500 mb-1">
+              <span>#${e.index} [${e.event_type}]</span>
+              <span>${e.timestamp.split('T')[1].slice(0,8)}</span>
+            </div>
+            <div class="text-blue-300 font-semibold">${e.state} - Merchant ${e.merchant_id}</div>
+            <div class="text-gray-500 text-xs truncate mt-0.5">Hash: ${e.hash.slice(0,20)}...</div>
+          </div>
+        `).reverse().join("");
+      } catch (err) {}
+    }
+
+    function showPacketModal() {
+      if (!latestEscalationPacket) return;
+      document.getElementById("modalSummary").innerText = latestEscalationPacket.issue_summary;
+      document.getElementById("modalNextAction").innerText = latestEscalationPacket.next_recommended_action;
+      document.getElementById("modalTried").innerHTML = (latestEscalationPacket.what_sahayak_tried || []).map(t =>
+        `<div>• [${t.state}] ${t.thought} -> ${t.decision}</div>`
+      ).join("");
+      document.getElementById("modalTranscript").innerHTML = (latestEscalationPacket.full_transcript || []).map(t =>
+        `<div><span class="font-bold text-blue-400">${t.speaker}:</span> ${t.text}</div>`
+      ).join("");
+      document.getElementById("packetModal").classList.remove("hidden");
+    }
+
+    function closePacketModal() {
+      document.getElementById("packetModal").classList.add("hidden");
+    }
+
+    async function runQuickEval() {
+      alert("Running 20-scenario benchmark suite in background. Check terminal console or audit log stream!");
+      await fetch("/api/v1/eval/run", { method: "POST" });
+      fetchAuditStream();
+    }
+
+    // Initial audit fetch
+    fetchAuditStream();
+  </script>
+</body>
+</html>

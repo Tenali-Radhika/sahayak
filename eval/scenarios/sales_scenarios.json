@@ -1,0 +1,26 @@
+[
+  {
+    "id": "SL-01",
+    "title": "Proactive EMI Due Tomorrow Outreach",
+    "merchant_id": "M_1092",
+    "trigger_type": "PROACTIVE_EMI",
+    "expected_action": "send_payment_link",
+    "expected_status": "DISPATCHED"
+  },
+  {
+    "id": "SL-02",
+    "title": "Soundbox 4G Retention & Upgrade Nudge",
+    "merchant_id": "M_1092",
+    "trigger_type": "SOUNDBOX_UPGRADE",
+    "expected_action": "trigger_nudge",
+    "expected_status": "DELIVERED"
+  },
+  {
+    "id": "SL-03",
+    "title": "Festive Pre-Approved Loan Follow-up",
+    "merchant_id": "M_1092",
+    "trigger_type": "LOAN_TOPUP",
+    "expected_action": "trigger_nudge",
+    "expected_status": "OFFER_SURFACED"
+  }
+]
