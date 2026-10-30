@@ -226,6 +226,13 @@ class AgentStateMachine:
 
         total_turn_latency_ms = int((time.time() - turn_start_time) * 1000) + stt_latency_ms + 400
         
+        # Match pre-generated Sarvam Bulbul audio if available
+        audio_url = None
+        if category == "SETTLEMENT_DELAY":
+            audio_url = "/demo/assets/settlement_hindi.wav"
+        elif category == "SOUNDBOX_FAILURE":
+            audio_url = "/demo/assets/soundbox_kannada.wav"
+
         return {
             "status": "RESOLVED",
             "state": "CLOSE",
@@ -236,6 +243,7 @@ class AgentStateMachine:
             "proactive_sales": self.proactive_sales_result,
             "response_text": response_text,
             "language_code": lang_code,
+            "audio_url": audio_url,
             "total_latency_ms": total_turn_latency_ms,
             "within_2s_budget": total_turn_latency_ms < 2000,
             "reasoning_trace": self.trace.get_trace_summary()
@@ -262,10 +270,13 @@ class AgentStateMachine:
         dispatch_to_human_agent(self.escalation_packet)
         
         # Courteous, transparent spoken response to merchant
+        audio_url = None
         if "50K" in reason_code or "CAP" in reason_code:
             resp_text = "Kyunki yeh rashi hamare automated safety limit ₹50,000 se zyada hai, isliye suraksha ke liye main yeh call turant hamare Senior Settlement Specialist ko transfer kar raha hoon. Saari jankari unke screen par bhej di gayi hai."
+            audio_url = "/demo/assets/refusal_hindi.wav"
         elif "FRAUD" in reason_code or "DISPUTE" in reason_code:
             resp_text = "Aapke account par ek security verification pending hai. Main turant hamare verification specialist ko call transfer kar raha hoon jo aapki madad karenge."
+            audio_url = "/demo/assets/fraud_hindi.wav"
         else:
             resp_text = "Main aapki request hamare senior teammate ko transfer kar raha hoon. Unhe aapke case ki poori jankari mil chuki hai."
             
@@ -278,6 +289,7 @@ class AgentStateMachine:
             "escalation_detail": reason_detail,
             "escalation_packet": self.escalation_packet,
             "response_text": resp_text,
+            "audio_url": audio_url,
             "total_latency_ms": 1100,
             "within_2s_budget": True,
             "reasoning_trace": self.trace.get_trace_summary()

@@ -13,6 +13,7 @@ import os
 from typing import Dict, Any, Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -35,6 +36,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Mount pre-generated Sarvam audio assets for offline-immune venue playback
+assets_dir = os.path.join(os.path.dirname(__file__), "demo", "assets")
+if os.path.exists(assets_dir):
+    app.mount("/demo/assets", StaticFiles(directory=assets_dir), name="demo_assets")
 
 
 # Request schemas
