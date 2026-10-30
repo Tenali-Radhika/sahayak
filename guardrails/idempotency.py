@@ -7,7 +7,7 @@ from typing import Dict, Tuple
 
 # Key: action_fingerprint -> timestamp of execution
 _EXECUTION_CACHE: Dict[str, float] = {}
-COOLDOWN_SECONDS = 60.0  # Prevent duplicate automated retries within 60s
+COOLDOWN_SECONDS = 5.0  # Prevent duplicate rapid double-clicks (5s cooldown for demo responsiveness)
 
 
 def check_idempotency(action_key: str, cooldown: float = COOLDOWN_SECONDS) -> Tuple[bool, str]:
