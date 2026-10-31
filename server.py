@@ -42,6 +42,10 @@ assets_dir = os.path.join(os.path.dirname(__file__), "demo", "assets")
 if os.path.exists(assets_dir):
     app.mount("/demo/assets", StaticFiles(directory=assets_dir), name="demo_assets")
 
+ui_dir = os.path.join(os.path.dirname(__file__), "ui")
+if os.path.exists(ui_dir):
+    app.mount("/ui", StaticFiles(directory=ui_dir), name="ui")
+
 
 # Request schemas
 class AgentTurnRequest(BaseModel):
