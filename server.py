@@ -91,6 +91,23 @@ def trigger_eval_run():
     return scorecard
 
 
+@app.post("/api/v1/demo/reset")
+def api_demo_reset():
+    """Resets demo state: clears Gate 5 idempotency cache, resets mock database, and verifies audit chain."""
+    from guardrails.idempotency import clear_idempotency_cache
+    from audit.writer import audit_writer
+    clear_idempotency_cache()
+    backend.db.reset()
+    audit_valid = audit_writer.verify_integrity()
+    return {
+        "status": "RESET_SUCCESS",
+        "idempotency_cleared": True,
+        "database_reset": True,
+        "audit_valid": audit_valid,
+        "message": "Demo state reset successfully. Ready for clean back-to-back merchant run."
+    }
+
+
 # ------------------------------------------------------------------------------
 # LAYER 4: 6 PAYTM MOCK API SURFACES
 # ------------------------------------------------------------------------------
