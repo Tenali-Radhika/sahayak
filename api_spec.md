@@ -81,7 +81,7 @@ flowchart TD
   "loudness": 1.5,
   "speech_sample_rate": 8000,
   "enable_preprocessing": true,
-  "model": "bulbul:v1"
+  "model": "bulbul:v3"
 }
 ```
 
