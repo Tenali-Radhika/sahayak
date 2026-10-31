@@ -161,13 +161,13 @@
       height: 22px;
     }
 
-    /* Mic Button (Sleek 48px Circular Action) */
+    /* Mic Button (Sleek 44px Circular Action, zero overlap) */
     .mic-button {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: #002970;
-      box-shadow: 0 4px 14px rgba(0, 41, 112, 0.35);
+      box-shadow: 0 4px 12px rgba(0, 41, 112, 0.3);
       transition: all 0.2s ease;
       flex-shrink: 0;
     }
@@ -213,17 +213,10 @@
     <!-- Top Branding & Navigation (Scrollable) -->
     <div class="p-3.5 flex-1 overflow-y-auto flex flex-col space-y-3.5">
       
-      <!-- Brand Identity with Logo -->
-      <div class="flex items-center space-x-3 px-1 pt-1">
-        <div class="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white shadow-md flex-shrink-0" style="background: linear-gradient(135deg, #0879D1 0%, #00BAF2 100%);">
-          <span class="text-base font-extrabold tracking-tighter">S</span>
-        </div>
-        <div class="overflow-hidden">
-          <div class="flex items-center space-x-1.5">
-            <span class="font-bold text-sm tracking-tight text-white">sahayak</span>
-            <span class="text-xxs px-1.5 py-0.2 rounded font-mono font-semibold" style="background-color: var(--purple-bg); color: var(--purple-accent); border: 1px solid var(--purple-border);">v2.0</span>
-          </div>
-          <p class="text-xxs tracking-wider uppercase font-semibold text-gray-400 truncate">AUTONOMOUS AI TEAMMATE</p>
+      <!-- Top Branding: Official Paytm AI Hackathon Logo -->
+      <div class="px-1 pt-1 pb-1">
+        <div class="h-10 px-2 py-1 bg-white rounded-xl border border-gray-200 flex items-center justify-center shadow-sm">
+          <img src="/ui/paytm_ai_hackathon.png" alt="Paytm AI Hackathon" class="h-full object-contain" />
         </div>
       </div>
 
@@ -347,27 +340,9 @@
 
     </div>
 
-    <!-- Bottom Status & Team Profile -->
-    <div class="p-3 border-t border-gray-800 space-y-2.5" style="background-color: var(--bg-surface);">
-      
-      <!-- Cylindrical Glowing Neon-Green Demo Environment Pill -->
-      <div class="flex items-center justify-center">
-        <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xxs font-mono tracking-wider font-semibold" style="background-color: #061F1A; border: 1px solid #0D5C4C; color: #34D399; box-shadow: 0 0 10px rgba(52, 211, 153, 0.25);">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" style="box-shadow: 0 0 8px #34D399;"></span>
-          <span class="tracking-widest">DEMO ENVIRONMENT</span>
-        </div>
-      </div>
-
-      <!-- Operational Indicator -->
-      <div class="flex items-center justify-between px-1 text-xxs font-mono text-gray-400">
-        <span class="flex items-center">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5"></span>
-          <span>System Normal</span>
-        </span>
-        <span class="text-gray-500">6 APIs Active</span>
-      </div>
-
-      <!-- Team Badge (Full Width, No TL Box so Team Name is 100% Fully Visible) -->
+    <!-- Bottom Team Profile -->
+    <div class="p-3 border-t border-gray-800" style="background-color: var(--bg-surface);">
+      <!-- Team Badge (Full Width, Crisp & Clean) -->
       <div class="p-3 rounded-xl border flex flex-col space-y-1" style="background-color: var(--bg-card); border-color: var(--border-card);">
         <div class="text-xs font-bold text-white leading-tight">
           Lankipalli Tharun &amp; Radhika Tenali
@@ -388,12 +363,15 @@
     <!-- Clean, Uncluttered Top Bar -->
     <header class="h-16 px-6 border-b border-gray-800 flex items-center justify-between flex-shrink-0 z-10" style="background-color: var(--bg-panel); border-color: var(--border-card);">
       
-      <!-- Left: Track Breadcrumb -->
-      <div>
-        <div class="flex items-center space-x-2 text-xs font-mono">
-          <span class="text-gray-400">PAYTM AI HACKATHON</span>
-          <span class="text-gray-600">/</span>
-          <span class="text-cyan-400 font-semibold tracking-wide">TRACK 3: AUTONOMOUS AI TEAMMATES</span>
+      <!-- Left: Sahayak v2.0 & Track 3 Breadcrumb -->
+      <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-2">
+          <span class="font-extrabold text-base tracking-tight text-white font-sans">Sahayak</span>
+          <span class="text-xs px-2 py-0.5 rounded-md font-mono font-bold" style="background-color: var(--purple-bg); color: var(--purple-accent); border: 1px solid var(--purple-border);">v2.0</span>
+        </div>
+        <span class="text-gray-600 font-mono text-sm">/</span>
+        <div class="flex items-center space-x-1.5 text-xs font-mono">
+          <span class="text-cyan-400 font-bold tracking-wider">TRACK 3: AUTONOMOUS AI TEAMMATES</span>
         </div>
       </div>
 
@@ -570,25 +548,25 @@
 
         </div>
 
-        <!-- Sleek Horizontal Voice Bar: Mic on Right, Waveform & Latency on Left (Interaction has Full Display) -->
-        <div class="px-3.5 py-2.5 bg-white border-t border-gray-200 flex items-center space-x-2.5 flex-shrink-0 shadow-sm">
+        <!-- Sleek Horizontal Voice Bar: Mic on Right, Waveform & Latency on Left (Zero Overlap Guaranteed) -->
+        <div class="px-3 py-2 bg-white border-t border-gray-200 flex items-center space-x-2.5 flex-shrink-0 shadow-sm">
           
           <!-- Left: Waveform & Live Audio Telemetry Pill -->
-          <div class="flex-1 min-w-0 flex flex-col justify-center bg-gray-50 border border-gray-200 rounded-xl px-3 py-1.5 shadow-inner">
+          <div class="flex-1 min-w-0 overflow-hidden bg-gray-50 border border-gray-200 rounded-xl px-2.5 py-1.5 shadow-inner">
             <!-- Status & Latency Row -->
-            <div class="flex items-center justify-between text-xxs text-gray-500 font-mono mb-0.5">
-              <span class="flex items-center truncate">
-                <span id="audioStatusDot" class="w-2 h-2 rounded-full bg-gray-400 mr-1.5 flex-shrink-0"></span>
-                <span id="audioStatusText" class="truncate font-sans font-medium text-gray-600">Tap mic to speak</span>
+            <div class="flex items-center justify-between text-xxs font-mono mb-0.5 gap-1.5">
+              <span class="flex items-center min-w-0 truncate">
+                <span id="audioStatusDot" class="w-1.5 h-1.5 rounded-full bg-gray-400 mr-1.5 flex-shrink-0"></span>
+                <span id="audioStatusText" class="truncate font-sans font-medium text-gray-600 text-xxs">Tap mic to speak</span>
               </span>
-              <span id="liveLatencyCounter" class="font-semibold text-gray-700 ml-1 flex-shrink-0">Latency: —</span>
+              <span id="liveLatencyCounter" class="font-bold text-emerald-700 flex-shrink-0 text-xxs font-mono whitespace-nowrap">Turn: — ms</span>
             </div>
             <!-- Dynamic Waveform Canvas -->
-            <canvas id="waveformCanvas" style="height: 22px; width: 100%;"></canvas>
+            <canvas id="waveformCanvas" style="height: 20px; width: 100%; display: block;"></canvas>
           </div>
 
           <!-- Right: Circular Mic Action Button -->
-          <button id="micActionBtn" onclick="handleMicClick()" class="mic-button flex items-center justify-center text-white text-lg focus:outline-none" title="Tap to speak in Hindi, Kannada or English">
+          <button id="micActionBtn" onclick="handleMicClick()" class="mic-button flex items-center justify-center text-white text-base focus:outline-none flex-shrink-0" title="Tap to speak in Hindi, Kannada or English">
             <i id="micIcon" class="fas fa-microphone"></i>
           </button>
 
@@ -1292,7 +1270,7 @@
         document.getElementById("callDurationTimer").innerText = "00:00";
         document.getElementById("callLiveDot").classList.add("hidden");
         
-        document.getElementById("liveLatencyCounter").innerText = "Turn Latency: —";
+        document.getElementById("liveLatencyCounter").innerText = "Turn: — ms";
         document.getElementById("totalMeasuredLatency").innerText = "—";
         document.getElementById("val-stt").innerText = "—";
         document.getElementById("val-llm").innerText = "—";
@@ -1403,7 +1381,7 @@
       sBubble.classList.remove("hidden");
       streamTextIntoElement(sText, speech, 15);
       
-      document.getElementById("liveLatencyCounter").innerText = "Turn Latency: 410 ms (Verified ✓)";
+      document.getElementById("liveLatencyCounter").innerText = "Turn: 410 ms ✓";
       document.getElementById("totalMeasuredLatency").innerText = "410 ms";
       updateLatencyBreakdownBar(410);
       
@@ -1692,7 +1670,7 @@
       lastLangCode = langCode;
 
       // Update Real Measured Latency Counters
-      document.getElementById("liveLatencyCounter").innerText = `Turn Latency: ${data.total_latency_ms} ms (Verified ✓)`;
+      document.getElementById("liveLatencyCounter").innerText = `Turn: ${data.total_latency_ms} ms ✓`;
       document.getElementById("totalMeasuredLatency").innerText = `${data.total_latency_ms} ms`;
 
       // Update Segmented Latency Breakdown Bar
@@ -1975,7 +1953,7 @@
       sBubble.classList.remove("hidden");
       streamTextIntoElement(sText, speech, 16);
       
-      document.getElementById("liveLatencyCounter").innerText = "Turn Latency: 420 ms (Verified ✓)";
+      document.getElementById("liveLatencyCounter").innerText = "Turn: 420 ms ✓";
       document.getElementById("totalMeasuredLatency").innerText = "420 ms";
       updateLatencyBreakdownBar(420);
       playSpeechFallback(speech, "hi-IN");
@@ -2050,7 +2028,7 @@
       sBubble.classList.remove("hidden");
       streamTextIntoElement(sText, speech, 16);
       
-      document.getElementById("liveLatencyCounter").innerText = "Turn Latency: 435 ms (Verified ✓)";
+      document.getElementById("liveLatencyCounter").innerText = "Turn: 435 ms ✓";
       document.getElementById("totalMeasuredLatency").innerText = "435 ms";
       updateLatencyBreakdownBar(435);
       playSpeechFallback(speech, "hi-IN");
